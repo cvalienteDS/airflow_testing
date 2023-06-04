@@ -25,6 +25,8 @@ from operators.emr.add_step import IBEmrAddStepsOperator
 
 import boto3
 
+from airflow.models import Variable
+
 
 ######################################## VARS ########################################
 # Global environment variables
@@ -161,6 +163,9 @@ Documentation can be found in the \[Docs folder.](https://gitlab.com/iberia-data
 # Uncomment or add those that are necessary
 def _populate_variables(**kwargs):
     import re
+
+    d = Variable.get("MY_DICT", deserialize_json=True)
+    print(d)
 
     insert_date_ci_as_datetime = kwargs["data_interval_start"]
     insert_date_ci = insert_date_ci_as_datetime.strftime("%Y-%m-%d")
