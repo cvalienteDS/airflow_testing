@@ -19,7 +19,6 @@ from pytz import timezone
 import pytz
 
 
-local_tz = pendulum.timezone('Europe/Madrid')
 
 d = {'a':10, 'b':11}
 
@@ -82,7 +81,7 @@ with DAG(
         hour=datetime(2023,6,5,1).replace(hour=h,minute=0)
         print(f'Expected time to extract got from dict: {h}')
         print(f'Actual time: {datetime.now()}')
-        print(f'Actual time with tz: {datetime.now(local_tz)}')
+        print(f'Actual time with tz: {datetime.now(pendulum.timezone("Europe/Madrid"))}')
         print(f'Expected time to extract with timezone: {hour}')
         
         delay = DateTimeSensor(
